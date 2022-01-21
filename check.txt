@@ -1,0 +1,27 @@
+1/  CREATE TABLE Customer (
+      Customer_id varchar2(20) NOT NULL PRIMARY KEY,
+      Customer_name varchar2(20) NOT NULL,
+      Customer_tel number
+    );
+
+2/  CREATE TABLE Product (
+      Product_id varchar2(20) NOT NULL PRIMARY KEY,
+      Product_name varchar2(20) NOT NULL,
+      price number,
+      CHECK (price > 0)
+    );
+
+3/  CREATE TABLE Orders (
+      Customer_id varchar2(20),
+      Product_id varchar2(20),
+      quantity number,
+      total_amount number,
+      FOREIGN KEY (Customer_id) REFERENCES Customer(Customer_id)
+      FOREIGN KEY (Product_id) REFERENCES Product(Product_id)
+    );
+
+4/  ALTER TABLE Product
+    ADD Category  varchar2(20);
+
+5/  ALTER TABLE Orders
+    ADD OrderDate date DEFAULT getdate();
